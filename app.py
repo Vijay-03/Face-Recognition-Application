@@ -154,7 +154,7 @@ elif add_dropbox == "Image processing":
         zeros = np.zeros(image.shape[:2], dtype="uint8")
         r, g, b = cv2.split(image)
         blue_image = cv2.merge([zeros, zeros, b])
-        st.write("Your green image")
+        st.write("Your blue image")
         st.image(blue_image)
 
     elif Filters == "Green":
@@ -162,7 +162,7 @@ elif add_dropbox == "Image processing":
         zeros = np.zeros(image.shape[:2], dtype="uint8")
         r, g, b = cv2.split(image)
         green_image = cv2.merge([zeros, g, zeros])
-        st.write("Your blue image")
+        st.write("Your green image")
         st.image(green_image)
 
     elif Filters == "Red":
