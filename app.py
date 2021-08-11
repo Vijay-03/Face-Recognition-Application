@@ -5,6 +5,8 @@ import cv2
 from PIL import Image, ImageEnhance
 import mediapipe as mp
 
+st.markdown("This Application is Developed By Vijay")
+
 DemoImage = "dwayne.jpg"
 
 face_cascade = cv2.CascadeClassifier(cv2.haarcascades+'haarcascade_frontalface_default.xml')
