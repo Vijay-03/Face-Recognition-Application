@@ -7,3 +7,4 @@
      - matplotlib
      - opencv
      - face_recognition
+     - streamlit_webrtc
