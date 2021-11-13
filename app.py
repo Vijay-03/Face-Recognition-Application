@@ -228,7 +228,9 @@ elif add_dropbox == "Face Mesh":
         # mp_drawing.draw_landmarks(image, face_landmarks, connections=mp_face_mesh.FACE_CONNECTIONS,
         #                           landmark_drawing_spec=drawing_spec, connection_drawing_spec=drawing_spec)
         mp_drawing.draw_landmarks(image, face_landmarks, mp_face_mesh.FACE_CONNECTIONS, drawing_spec)
-    st.write("Face Mesh")
+    fm = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+         ' font-size: 20px;">Face Mesh</p'
+    st.write(fm, unsafe_allow_html=True)
     st.image(image)
 
 elif add_dropbox == "Face Detect":
@@ -244,5 +246,17 @@ elif add_dropbox == "Face Detect":
     # Draw rectangle around the faces
     for (x, y, w, h) in faces:
         cv2.rectangle(img, (x, y), (x+w, y+h), (0, 225, 0), 2)
-    st.write("Detecting faces")
+    fd = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+         ' font-size: 20px;">Detecting faces</p'
+    st.write(fd, unsafe_allow_html=True)
+    
+elif add_dropbox == "Live Face Detection":
+    message = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+              ' font-size: 20px;">Live Face Detection</p'
+    st.write(message, unsafe_allow_html=True)
+    # st.subheader("Live Face Detection")
+    drawing_spec = mp_drawing.DrawingSpec((225, 225, 0), thickness=1, circle_radius=1)
+
+    st.sidebar.markdown("---")
+    webrtc_streamer(key="example", video_transformer_factory=VideoTransformer)
     st.image(img)
