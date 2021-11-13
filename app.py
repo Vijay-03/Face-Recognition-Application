@@ -5,11 +5,27 @@ import cv2
 from PIL import Image, ImageEnhance
 import mediapipe as mp
 
-st.markdown("This Application is Developed By Vijay")
+face_cascade = cv2.CascadeClassifier(cv2.haarcascades+'haarcascade_frontalface_default.xml')
+
+
+class VideoTransformer(VideoTransformerBase):
+    def __init__(self):
+        self.name = "Cheers"
+
+    def transform(self, frame):
+        frame = frame.to_ndarray(format="bgr24")
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+        name = self.name
+        for (x, y, w, h) in faces:
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (95, 207, 30), 3)
+            cv2.rectangle(frame, (x, y - 40), (x + w, y), (95, 207, 30), -1)
+            cv2.putText(frame, str(name), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
+
+        return img
+
 
 DemoImage = "dwayne.jpg"
-
-face_cascade = cv2.CascadeClassifier(cv2.haarcascades+'haarcascade_frontalface_default.xml')
 
 mp_drawing = mp.solutions.drawing_utils
 mp_face_mesh = mp.solutions.face_mesh
@@ -18,13 +34,15 @@ model_face_mesh = mp_face_mesh.FaceMesh()
 
 drawing_spec = mp_drawing.DrawingSpec((0, 0, 225), thickness=1, circle_radius=1)
 
-st.title("Face Recognition Application")
-st.subheader("This application can perform various OpenCV Operations")
+heading = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+          ' font-size: 20px;">Developed by Vijay</p'
+st.write(heading, unsafe_allow_html=True)
+st.subheader("This application can perform various Computer Vision Operations")
 st.write()
 
 add_dropbox = st.sidebar.selectbox(
     "Choose Input Source",
-    ("Select", "Image processing", "Face Mesh", "Face Detect")
+    ("Select", "Live Face Detection", "Image processing", "Face Mesh", "Face Detect")
 )
 
 image = None
@@ -32,19 +50,25 @@ image_file_path = st.sidebar.file_uploader("Upload an image", type=["jpg", "jpeg
 
 if image_file_path is not None:
     image = np.array(Image.open(image_file_path))
-    # st.sidebar.image(image)
 else:
     image = np.array(Image.open(DemoImage))
-    st.write("Demo Image")
-    # st.sidebar.image(image)
-    st.image(image)
 
 if add_dropbox == "Select":
     if image_file_path is not None:
         image = np.array(Image.open(image_file_path))
         st.sidebar.image(image)
         st.image(image)
-    st.write("Choose Input Source:")
+    else:
+        dm = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+               ' font-size: 20px;">Demo Image:</p'
+        st.write(dm, unsafe_allow_html=True)
+        # st.sidebar.image(image)
+        st.image(image)
+
+    text = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+           ' font-size: 20px;">Choose Input Source:</p'
+    st.write(text, unsafe_allow_html=True)
+    # st.write("Choose Input Source:")
 
 # elif add_dropbox == "image processing":
 #     add_lilbox2 = st.sidebar.selectbox(
@@ -98,12 +122,17 @@ elif add_dropbox == "Image processing":
                                )
 
     if Filters == "Grayscale":
-        st.write("Converting to gray scale")
+        cv = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+             ' font-size: 20px;">Converting to gray scale</p'
+        st.write(cv, unsafe_allow_html=True)
         gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        st.write("Your gray scaled image")
+#         st.write("Your gray scaled image")  
         st.image(gray_image)
 
     elif Filters == "Cartoon":
+        cv = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+             ' font-size: 20px;">Converting to Cartoon</p'
+        st.write(cv, unsafe_allow_html=True)
         image = np.array(image)
         image = cv2.cvtColor(image, 1)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -117,7 +146,9 @@ elif add_dropbox == "Image processing":
         st.image(cartoon)
 
     elif Filters == "Canny Edge":
-        st.write("Converting to canny")
+        cv = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+             ' font-size: 20px;">Converting to Canny Edge</p'
+        st.write(cv, unsafe_allow_html=True)
         image = np.array(image)
         image = cv2.cvtColor(image, 1)
         image = cv2.GaussianBlur(image, (11, 11), 0)
@@ -127,7 +158,9 @@ elif add_dropbox == "Image processing":
     elif Filters == "Contrast":
         image = Image.fromarray(image)
         contrast_rate = st.slider("Choose Contrast", 0.5, 3.5)
-        st.write("Converting image")
+        cv = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+             ' font-size: 20px;">Converting image</p'
+        st.write(cv, unsafe_allow_html=True)
         enhancing = ImageEnhance.Contrast(image)
         contrasted_image = enhancing.enhance(contrast_rate)
         st.image(contrasted_image)
@@ -135,7 +168,9 @@ elif add_dropbox == "Image processing":
     elif Filters == "Brightness":
         image = Image.fromarray(image)
         brightness_rate = st.slider("Choose Brightness", 0.5, 3.5)
-        st.write("Converting image")
+        cv = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+             ' font-size: 20px;">Converting image</p'
+        st.write(cv, unsafe_allow_html=True)
         enhancing = ImageEnhance.Brightness(image)
         brightness_image = enhancing.enhance(brightness_rate)
         st.image(brightness_image)
@@ -144,13 +179,17 @@ elif add_dropbox == "Image processing":
         image = Image.fromarray(image)
         image = np.array(image)
         blur_rate = st.slider("Choose Blur", 0.5, 3.5)
-        st.write("Converting image")
+        cv = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+             ' font-size: 20px;">Converting image</p'
+        st.write(cv, unsafe_allow_html=True)
         image = cv2.cvtColor(image, 1)
         blur_image = cv2.GaussianBlur(image, (11, 11), blur_rate)
         st.image(blur_image)
 
     elif Filters == "Blue":
-        st.write("Converting to blue")
+        cv = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+             ' font-size: 20px;">Converting to Blue</p'
+        st.write(cv, unsafe_allow_html=True)
         zeros = np.zeros(image.shape[:2], dtype="uint8")
         r, g, b = cv2.split(image)
         blue_image = cv2.merge([zeros, zeros, b])
