@@ -197,7 +197,9 @@ elif add_dropbox == "Image processing":
         st.image(blue_image)
 
     elif Filters == "Green":
-        st.write("Converting to green")
+        cv = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+             ' font-size: 20px;">Converting to Blue</p'
+        st.write(cv, unsafe_allow_html=True)
         zeros = np.zeros(image.shape[:2], dtype="uint8")
         r, g, b = cv2.split(image)
         green_image = cv2.merge([zeros, g, zeros])
@@ -205,7 +207,9 @@ elif add_dropbox == "Image processing":
         st.image(green_image)
 
     elif Filters == "Red":
-        st.write("Converting to Red")
+        cv = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+             ' font-size: 20px;">Converting to Canny Edge</p'
+        st.write(cv, unsafe_allow_html=True)
         zeros = np.zeros(image.shape[:2], dtype="uint8")
         r, g, b = cv2.split(image)
         red_image = cv2.merge([r, zeros, zeros])
