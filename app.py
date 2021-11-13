@@ -3,7 +3,7 @@ import streamlit as st
 import numpy as np
 import cv2
 from PIL import Image, ImageEnhance
-import mediapipe as mp
+# import mediapipe as mp
 from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
 
 face_cascade = cv2.CascadeClassifier(cv2.haarcascades+'haarcascade_frontalface_default.xml')
