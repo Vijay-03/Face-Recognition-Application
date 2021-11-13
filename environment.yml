@@ -6,7 +6,5 @@
      - Pillow
      - matplotlib
      - mediapipe
-     - streamlit
-     - streamlit-webrtc
-     - opencv-python-headless
+     - opencv
      - face_recognition
