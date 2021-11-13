@@ -8,5 +8,5 @@
      - mediapipe
      - streamlit
      - streamlit-webrtc
-     - opencv
+     - opencv-python-headless
      - face_recognition
