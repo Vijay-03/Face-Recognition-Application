@@ -5,6 +5,5 @@
      - numpy
      - Pillow
      - matplotlib
-     - MediaPipe
      - opencv
      - face_recognition
