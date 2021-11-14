@@ -11,9 +11,9 @@ dependencies:
   - matplotlib==3.4.2
   - numpy==1.21.0
   - streamlit==0.85.1
+  - opencv
 
   - pip:
     - mediapipe==0.8.6
     - streamlit-webrtc==0.6.3
-    - opencv-python-headless
 
