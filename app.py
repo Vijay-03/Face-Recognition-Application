@@ -23,7 +23,7 @@ class VideoTransformer(VideoTransformerBase):
             cv2.rectangle(frame, (x, y - 40), (x + w, y), (95, 207, 30), -1)
             cv2.putText(frame, str(name), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
 
-        return img
+        return frame
 
 
 DemoImage = "dwayne.jpg"
