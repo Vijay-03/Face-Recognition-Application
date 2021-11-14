@@ -2,7 +2,6 @@ channels:
   - defaults
 dependencies:
   - python==3.7.5
-  - pip==21.3.1
   - pip:
     - Pillow==8.3.1
     - cmake==3.21.0
