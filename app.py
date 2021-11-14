@@ -245,6 +245,7 @@ elif add_dropbox == "Face Detect":
     fd = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
          ' font-size: 20px;">Detecting faces</p'
     st.write(fd, unsafe_allow_html=True)
+    st.image(img)
     
 elif add_dropbox == "Live Face Detection":
     message = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
