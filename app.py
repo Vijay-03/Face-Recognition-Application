@@ -199,7 +199,7 @@ elif add_dropbox == "Image processing":
 
     elif Filters == "Green":
         cv = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
-             ' font-size: 20px;">Converting to Blue</p'
+             ' font-size: 20px;">Converting to Green</p'
         st.write(cv, unsafe_allow_html=True)
         zeros = np.zeros(image.shape[:2], dtype="uint8")
         r, g, b = cv2.split(image)
@@ -209,7 +209,7 @@ elif add_dropbox == "Image processing":
 
     elif Filters == "Red":
         cv = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
-             ' font-size: 20px;">Converting to Canny Edge</p'
+             ' font-size: 20px;">Converting to Red</p'
         st.write(cv, unsafe_allow_html=True)
         zeros = np.zeros(image.shape[:2], dtype="uint8")
         r, g, b = cv2.split(image)
