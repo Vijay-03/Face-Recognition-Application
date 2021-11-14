@@ -3,7 +3,7 @@ import streamlit as st
 import numpy as np
 import cv2
 from PIL import Image, ImageEnhance
-# import mediapipe as mp
+import mediapipe as mp
 from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
 
 face_cascade = cv2.CascadeClassifier(cv2.haarcascades+'haarcascade_frontalface_default.xml')
@@ -218,16 +218,16 @@ elif add_dropbox == "Image processing":
         st.image(red_image)
 
 
-# elif add_dropbox == "Face Mesh":
-#     st.sidebar.image(image)
-#     results = model_face_mesh.process(image)
+elif add_dropbox == "Face Mesh":
+    st.sidebar.image(image)
+    results = model_face_mesh.process(image)
 
-#     for face_landmarks in results.multi_face_landmarks:
-#         mp_drawing.draw_landmarks(image, face_landmarks, mp_face_mesh.FACE_CONNECTIONS, drawing_spec)
-#     fm = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
-#          ' font-size: 20px;">Face Mesh</p'
-#     st.write(fm, unsafe_allow_html=True)
-#     st.image(image)
+    for face_landmarks in results.multi_face_landmarks:
+        mp_drawing.draw_landmarks(image, face_landmarks, mp_face_mesh.FACE_CONNECTIONS, drawing_spec)
+    fm = '<p style = "font-family: Franklin Gothic; color: #F63366;' \
+         ' font-size: 20px;">Face Mesh</p'
+    st.write(fm, unsafe_allow_html=True)
+    st.image(image)
 
 elif add_dropbox == "Face Detect":
     # image_file_path = st.sidebar.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
